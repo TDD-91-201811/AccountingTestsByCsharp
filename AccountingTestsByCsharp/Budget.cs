@@ -6,6 +6,11 @@ namespace AccountingTestsByCsharp
     {
         public int Amount { get; set; }
 
+        public int Days
+        {
+            get { return 30; }
+        }
+
         public DateTime FirstDay => DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
 
         public DateTime LastDay

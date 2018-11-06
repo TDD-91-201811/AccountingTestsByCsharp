@@ -14,7 +14,7 @@ namespace AccountingTestsByCsharp
         [TestMethod]
         public void Daily_Amount_is_10()
         {
-            GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
+            GivenBudgets(new Budget { YearMonth = "201004", Amount = 300 });
             TotalAmountShouldBe(20, new DateTime(2010, 4, 1), new DateTime(2010, 4, 2));
         }
 
