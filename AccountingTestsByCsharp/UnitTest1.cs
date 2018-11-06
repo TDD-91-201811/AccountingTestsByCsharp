@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace AccountingTestsByCsharp
 {
@@ -14,18 +14,14 @@ namespace AccountingTestsByCsharp
         [TestMethod]
         public void no_budgets()
         {
-            _stubBudgetRepository.GetAll().Returns(new List<Budget>());
+            GivenBudgets();
             TotalAmountShouldBe(0, new DateTime(2010, 4, 1), new DateTime(2010, 4, 1));
         }
 
         [TestMethod]
         public void period_inside_budget_month()
         {
-            _stubBudgetRepository.GetAll().Returns(new List<Budget>
-            {
-                new Budget {YearMonth = "201004", Amount = 30},
-            });
-
+            GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
             TotalAmountShouldBe(1, new DateTime(2010, 4, 1), new DateTime(2010, 4, 1));
         }
 
@@ -33,6 +29,11 @@ namespace AccountingTestsByCsharp
         public void TestInit()
         {
             _accounting = new Accounting(_stubBudgetRepository);
+        }
+
+        private void GivenBudgets(params Budget[] budgets)
+        {
+            _stubBudgetRepository.GetAll().Returns(budgets.ToList());
         }
 
         private void TotalAmountShouldBe(decimal expected, DateTime start, DateTime end)
