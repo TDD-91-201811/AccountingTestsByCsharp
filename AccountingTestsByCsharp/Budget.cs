@@ -33,5 +33,10 @@ namespace AccountingTestsByCsharp
         {
             return Amount / Days;
         }
+
+        public double OverlappingAmount(Period period)
+        {
+            return DailyAmount() * period.OverlappingDays(CreatePeriod());
+        }
     }
 }
