@@ -6,13 +6,7 @@ namespace AccountingTestsByCsharp
     {
         public int Amount { get; set; }
 
-        public DateTime FirstDay
-        {
-            get
-            {
-                return DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
-            }
-        }
+        public DateTime FirstDay => DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
 
         public string YearMonth { get; set; }
     }
