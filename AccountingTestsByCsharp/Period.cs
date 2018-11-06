@@ -10,8 +10,8 @@ namespace AccountingTestsByCsharp
             End = end;
         }
 
-        public DateTime End { get; private set; }
-        public DateTime Start { get; private set; }
+        public DateTime End { get; }
+        public DateTime Start { get; }
 
         public double OverlappingDays(Period another)
         {

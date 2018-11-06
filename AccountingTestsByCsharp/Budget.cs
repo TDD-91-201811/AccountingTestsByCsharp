@@ -6,11 +6,12 @@ namespace AccountingTestsByCsharp
     {
         public int Amount { get; set; }
 
-        public int Days => LastDay.Day;
+        public string YearMonth { get; set; }
+        private int Days => LastDay.Day;
 
-        public DateTime FirstDay => DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
+        private DateTime FirstDay => DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
 
-        public DateTime LastDay
+        private DateTime LastDay
         {
             get
             {
@@ -19,21 +20,19 @@ namespace AccountingTestsByCsharp
             }
         }
 
-        public string YearMonth { get; set; }
+        public decimal OverlappingAmount(Period period)
+        {
+            return (decimal)(DailyAmount() * period.OverlappingDays(CreatePeriod()));
+        }
 
-        public Period CreatePeriod()
+        private Period CreatePeriod()
         {
             return new Period(FirstDay, LastDay);
         }
 
-        public int DailyAmount()
+        private int DailyAmount()
         {
             return Amount / Days;
-        }
-
-        public decimal OverlappingAmount(Period period)
-        {
-            return (decimal)(DailyAmount() * period.OverlappingDays(CreatePeriod()));
         }
     }
 }
