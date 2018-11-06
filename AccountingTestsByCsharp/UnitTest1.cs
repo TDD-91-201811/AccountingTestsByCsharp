@@ -12,6 +12,13 @@ namespace AccountingTestsByCsharp
         private IRepository<Budget> _stubBudgetRepository = Substitute.For<IRepository<Budget>>();
 
         [TestMethod]
+        public void invalid_period()
+        {
+            GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2010, 4, 30), new DateTime(2010, 4, 1));
+        }
+
+        [TestMethod]
         public void no_budgets()
         {
             GivenBudgets();
