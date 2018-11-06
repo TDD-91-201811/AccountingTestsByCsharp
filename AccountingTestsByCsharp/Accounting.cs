@@ -5,21 +5,26 @@ namespace AccountingTestsByCsharp
 {
     public class Accounting
     {
-        private readonly IRepository<Budget> _stubBudgetRepository;
+        private readonly IRepository<Budget> _budgetRepository;
 
-        public Accounting(IRepository<Budget> stubBudgetRepository)
+        public Accounting(IRepository<Budget> budgetRepository)
         {
-            _stubBudgetRepository = stubBudgetRepository;
+            _budgetRepository = budgetRepository;
         }
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            if (_stubBudgetRepository.GetAll().Any())
+            if (_budgetRepository.GetAll().Any())
             {
-                return (decimal)(end - start).TotalDays + 1;
+                return (decimal)Days(start, end);
             }
 
             return 0;
+        }
+
+        private static double Days(DateTime start, DateTime end)
+        {
+            return (end - start).TotalDays + 1;
         }
     }
 }
