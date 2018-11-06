@@ -26,6 +26,15 @@ namespace AccountingTestsByCsharp
         }
 
         [TestMethod]
+        public void multiple_budgets()
+        {
+            GivenBudgets(
+                new Budget { YearMonth = "201004", Amount = 300 },
+                new Budget { YearMonth = "201005", Amount = 31 });
+            TotalAmountShouldBe(12, new DateTime(2010, 4, 30), new DateTime(2010, 5, 2));
+        }
+
+        [TestMethod]
         public void no_budgets()
         {
             GivenBudgets();
