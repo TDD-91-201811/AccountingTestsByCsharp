@@ -16,17 +16,23 @@ namespace AccountingTestsByCsharp
         {
             if (_budgetRepository.GetAll().Any())
             {
-                var budget = _budgetRepository.GetAll().First(); 
+                var budget = _budgetRepository.GetAll().First();
                 var period = new Period(start, end);
 
-                if (period.End < budget.FirstDay)
-                {
-                    return 0;
-                }
-                return (decimal)period.Days();
+                return (decimal)OverlappingDays(period, budget);
             }
 
             return 0;
+        }
+
+        private static double OverlappingDays(Period period, Budget budget)
+        {
+            if (period.End < budget.FirstDay)
+            {
+                return 0;
+            }
+
+            return period.Days();
         }
     }
 }

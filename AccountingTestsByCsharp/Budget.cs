@@ -10,8 +10,7 @@ namespace AccountingTestsByCsharp
         {
             get
             {
-                var firstDay = DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
-                return firstDay;
+                return DateTime.ParseExact(YearMonth + "01", "yyyyMMdd", null);
             }
         }
 
