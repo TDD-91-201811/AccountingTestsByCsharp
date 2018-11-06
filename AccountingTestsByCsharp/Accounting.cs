@@ -21,12 +21,17 @@ namespace AccountingTestsByCsharp
                 var budget = budgets.First();
                 var period = new Period(start, end);
 
-                var dailyAmount = budget.Amount / budget.Days;
+                var dailyAmount = DailyAmount(budget);
                 var overlappingDays = period.OverlappingDays(budget.CreatePeriod());
                 return (decimal)(dailyAmount * overlappingDays);
             }
 
             return 0;
+        }
+
+        private static int DailyAmount(Budget budget)
+        {
+            return budget.Amount / budget.Days;
         }
     }
 }
