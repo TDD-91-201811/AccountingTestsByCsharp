@@ -26,6 +26,13 @@ namespace AccountingTestsByCsharp
         }
 
         [TestMethod]
+        public void period_no_overlapping_after_budget_lastDay()
+        {
+            GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
+            TotalAmountShouldBe(0, new DateTime(2010, 5, 1), new DateTime(2010, 5, 1));
+        }
+
+        [TestMethod]
         public void period_no_overlapping_before_budget_firstDay()
         {
             GivenBudgets(new Budget { YearMonth = "201004", Amount = 30 });
