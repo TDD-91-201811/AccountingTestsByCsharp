@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace AccountingTestsByCsharp
 {
@@ -13,16 +14,8 @@ namespace AccountingTestsByCsharp
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            var budgets = _budgetRepository.GetAll();
-
             var period = new Period(start, end);
-            decimal totalAmount = 0;
-            foreach (var budget in budgets)
-            {
-                totalAmount += budget.OverlappingAmount(period);
-            }
-
-            return totalAmount;
+            return _budgetRepository.GetAll().Sum(b => b.OverlappingAmount(period));
         }
     }
 }
