@@ -23,5 +23,10 @@ namespace AccountingTestsByCsharp
         }
 
         public string YearMonth { get; set; }
+
+        public Period CreatePeriod()
+        {
+            return new Period(FirstDay, LastDay);
+        }
     }
 }
