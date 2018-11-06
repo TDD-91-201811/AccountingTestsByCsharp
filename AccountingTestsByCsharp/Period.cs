@@ -20,11 +20,7 @@ namespace AccountingTestsByCsharp
 
         public double OverlappingDays(Budget budget)
         {
-            if (Start>budget.LastDay)
-            {
-                return 0;
-            }
-            if (End < budget.FirstDay)
+            if (Start > budget.LastDay || End < budget.FirstDay)
             {
                 return 0;
             }
