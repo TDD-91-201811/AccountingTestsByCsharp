@@ -28,5 +28,10 @@ namespace AccountingTestsByCsharp
         {
             return new Period(FirstDay, LastDay);
         }
+
+        public int DailyAmount()
+        {
+            return Amount / Days;
+        }
     }
 }
