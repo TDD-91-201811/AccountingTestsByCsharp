@@ -12,5 +12,10 @@ namespace AccountingTestsByCsharp
 
         public DateTime End { get; private set; }
         public DateTime Start { get; private set; }
+
+        public double Days()
+        {
+            return (End - Start).TotalDays + 1;
+        }
     }
 }

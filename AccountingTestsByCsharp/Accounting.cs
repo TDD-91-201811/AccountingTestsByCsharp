@@ -16,15 +16,11 @@ namespace AccountingTestsByCsharp
         {
             if (_budgetRepository.GetAll().Any())
             {
-                return (decimal)Days(new Period(start, end));
+                var period = new Period(start, end);
+                return (decimal)period.Days();
             }
 
             return 0;
-        }
-
-        private static double Days(Period period)
-        {
-            return (period.End - period.Start).TotalDays + 1;
         }
     }
 }
