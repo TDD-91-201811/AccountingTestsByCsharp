@@ -16,7 +16,13 @@ namespace AccountingTestsByCsharp
         {
             if (_budgetRepository.GetAll().Any())
             {
+                var budget = _budgetRepository.GetAll().First(); 
                 var period = new Period(start, end);
+
+                if (period.End < budget.FirstDay)
+                {
+                    return 0;
+                }
                 return (decimal)period.Days();
             }
 
