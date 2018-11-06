@@ -15,7 +15,7 @@ namespace AccountingTestsByCsharp
 
         public double OverlappingDays(Period another)
         {
-            if (Start > another.End || End < another.Start)
+            if (HasNoOverlapping(another))
             {
                 return 0;
             }
@@ -29,6 +29,11 @@ namespace AccountingTestsByCsharp
                 : End;
 
             return (effectiveEnd - effectiveStart).TotalDays + 1;
+        }
+
+        private bool HasNoOverlapping(Period another)
+        {
+            return Start > another.End || End < another.Start;
         }
     }
 }
