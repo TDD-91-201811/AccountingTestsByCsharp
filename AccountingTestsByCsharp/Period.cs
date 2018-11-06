@@ -13,19 +13,19 @@ namespace AccountingTestsByCsharp
         public DateTime End { get; private set; }
         public DateTime Start { get; private set; }
 
-        public double OverlappingDays(Budget budget)
+        public double OverlappingDays(Period another)
         {
-            if (Start > budget.LastDay || End < budget.FirstDay)
+            if (Start > another.End || End < another.Start)
             {
                 return 0;
             }
 
-            var effectiveStart = budget.FirstDay > Start
-                ? budget.FirstDay
+            var effectiveStart = another.Start > Start
+                ? another.Start
                 : Start;
 
-            var effectiveEnd = budget.LastDay < End
-                ? budget.LastDay
+            var effectiveEnd = another.End < End
+                ? another.End
                 : End;
 
             return (effectiveEnd - effectiveStart).TotalDays + 1;
