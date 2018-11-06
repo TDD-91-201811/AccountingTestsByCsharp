@@ -20,11 +20,10 @@ namespace AccountingTestsByCsharp
                 return 0;
             }
 
-            var effectiveStart = Start;
-            if (budget.FirstDay > Start)
-            {
-                effectiveStart = budget.FirstDay;
-            }
+            var effectiveStart = budget.FirstDay > Start
+            ? budget.FirstDay
+            : Start;
+
             return (End - effectiveStart).TotalDays + 1;
         }
     }
