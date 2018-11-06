@@ -17,5 +17,15 @@ namespace AccountingTestsByCsharp
         {
             return (End - Start).TotalDays + 1;
         }
+
+        public double OverlappingDays(Budget budget)
+        {
+            if (End < budget.FirstDay)
+            {
+                return 0;
+            }
+
+            return Days();
+        }
     }
 }

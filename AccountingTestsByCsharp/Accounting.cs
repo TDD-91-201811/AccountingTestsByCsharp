@@ -14,25 +14,17 @@ namespace AccountingTestsByCsharp
 
         public decimal TotalAmount(DateTime start, DateTime end)
         {
-            if (_budgetRepository.GetAll().Any())
+            var budgets = _budgetRepository.GetAll();
+
+            if (budgets.Any())
             {
-                var budget = _budgetRepository.GetAll().First();
+                var budget = budgets.First();
                 var period = new Period(start, end);
 
-                return (decimal)OverlappingDays(period, budget);
+                return (decimal)period.OverlappingDays(budget);
             }
 
             return 0;
-        }
-
-        private static double OverlappingDays(Period period, Budget budget)
-        {
-            if (period.End < budget.FirstDay)
-            {
-                return 0;
-            }
-
-            return period.Days();
         }
     }
 }
